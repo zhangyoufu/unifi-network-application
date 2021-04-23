@@ -1,0 +1,38 @@
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: major.minor.patch, without suffix
+        required: true
+      url:
+        description: URL for UniFi.unix.zip
+        required: true
+      md5:
+        description: MD5 checksum for UniFi.unix.zip
+        default: ''
+      sha256:
+        description: SHA256 checksum for UniFi.unix.zip
+        default: ''
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+    - name: Enable dockerd --experimental
+      run: |-
+        if [ ! -e /etc/docker/daemon.json ]; then
+        	echo '{}' | tee /etc/docker/daemon.json >/dev/null
+        fi
+        DOCKERD_CONFIG=$(jq '.+{experimental:true}' /etc/docker/daemon.json)
+        sudo tee /etc/docker/daemon.json <<<"$DOCKERD_CONFIG" >/dev/null
+        sudo systemctl restart docker
+    - uses: actions/checkout@v2
+    - env:
+        VERSION: ${{ github.event.inputs.version }}
+        URL: ${{ github.event.inputs.url }}
+        MD5: ${{ github.event.inputs.md5 }}
+        SHA256: ${{ github.event.inputs.sha256 }}
+        IMAGE_PATH: registry-1.docker.io/youfu/unifi
+        REGISTRY_USERNAME: youfu
+        REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+      run: ./build.sh 2>&1

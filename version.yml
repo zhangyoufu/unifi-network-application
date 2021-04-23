@@ -1,0 +1,127 @@
+- version: 6.0.41
+  url:
+  - https://dl.ui.com/unifi/6.0.41-5353824aa0/UniFi.unix.zip
+  - https://dl.ui.com/unifi/6.0.41/UniFi.unix.zip
+  checksum:
+    md5: b8b695c03abe71a842b10f68f0244559
+    sha256: 49b3effc06f565fb3fddb29aadbd03c256faed57398de265cb2dff1bedef7987
+  release:
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-0-41/25633411-0273-4197-bf30-4aff30b3701e
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-0-41/688e2bee-63c9-4fcb-ba89-a1249566f5ae
+- version: 6.0.42
+  url: https://dl.ui.com/unifi/6.0.42-703ac3104b/UniFi.unix.zip
+  checksum:
+    md5: c02507157a2fa8def4ef36f8a4b32ea2
+    sha256: 353b91d4be78aa13e6d08a219355d60ac12b8c03505956c6edc4bee9cc7a0dbd
+  release:
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-0-42/2fb39256-9c42-44d5-a6db-74a6436d1709
+- version: 6.0.43
+  url:
+  - https://dl.ui.com/unifi/6.0.43-a8e04a273f/UniFi.unix.zip
+  - https://dl.ui.com/unifi/6.0.43/UniFi.unix.zip
+  checksum:
+    md5: 08cef78cf3f93bb43d3bc304d84f6b24
+    sha256: 08ed54955bcf48585118cde91a9e7bb4552cc73123cfe4b5d514c3774c3c55ab
+  release:
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-0-43/b28bb453-927a-4dd8-82f7-40af28505510
+- version: 6.0.45
+  url:
+  - https://dl.ui.com/unifi/6.0.45-564eef1dda/UniFi.unix.zip
+  - https://dl.ui.com/unifi/6.0.45/UniFi.unix.zip
+  checksum:
+    md5: e11bd11cf2c23476661cd153560a6adb
+    sha256: 2381be019a42ab1a4311a79df8ed7f3ecaf62c6eeda65ae760c274ea67cc60a4
+  releases:
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-0-45/01f9f1fb-08f2-4573-bae1-c784df9b1818
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-0-45/8d3b98e1-b9d4-4ab3-b8da-721dbe9ab842
+- version: 6.1.61
+  url: https://dl.ui.com/unifi/6.1.61-5b1c34fbe3/UniFi.unix.zip
+  checksum:
+    md5: 4162e7f507d0941d0a1d34175e458ea1
+    sha256: 9e34a7c7b60a787de15594e31b4ada91c51ce229a25d5cf95bf9b590fac56608
+  release:
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-1-61/62f1ad38-1ac5-430c-94b0-becbb8f71d7d
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-1-61/10f88932-c0fd-4852-a664-b697cb093db5
+- version: 6.1.64
+  url: https://dl.ui.com/unifi/6.1.64-b895661d78/UniFi.unix.zip
+  checksum:
+    md5: 39da892d1a8cc9c88a0b39d112847f27
+    sha256: 0a71b2cb2dcca0615389255efa460329c28d59c649713ff316655030ddf9f734
+  forum-url:
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-1-64/a8587fe2-e9b1-43a4-9f97-bcd5051226d6
+- version: 6.1.65
+  url: https://dl.ui.com/unifi/6.1.65-03c0c043b3/UniFi.unix.zip
+  checksum:
+    md5: 08518fd3ba86046cbf2e4d31ad6139fd
+    sha256: c5e6d5e65988870e5df8f36b94ab179d3d137403776c6a615560d20486ecfc2e
+  forum-url:
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-1-65/fbfd6971-3da4-420a-9568-103047515e91
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-1-65/75073c38-4001-4d86-be81-5c0ffc75af0d
+- version: 6.1.67
+  url: https://dl.ui.com/unifi/6.1.67-72b68abfe3/UniFi.unix.zip
+  checksum:
+    md5: 5547d77b62cb1c8d326161ed7e0f5e23
+    sha256: 1c05ad6ec9ac780522547f2065c2585fe9860ab17e25772947cdd5a7fcc2b31a
+  forum-url:
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-1-67/ac0256ea-c41a-4d4e-8141-c9f9f5b633e0
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-1-67/aed28c2f-6346-45b2-9f40-6eb92accafa8
+- version: 6.1.69
+  url: https://dl.ui.com/unifi/6.1.69-70ab3ef777/UniFi.unix.zip
+  checksum:
+    md5: 56d672040f70bba8b3404646dcf5981e
+    sha256: e922a288c5afb27336acc67b1d6e11c555328c9c85c6e78889d60f64704f8235
+  forum-url:
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-1-69/f470cbc3-21af-4922-a5f7-5fe9746a958f
+- version: 6.1.70
+  url: https://dl.ui.com/unifi/6.1.70-fbf03b3a76/UniFi.unix.zip
+  checksum:
+    md5: 2e280f4d3554cf671d8fa9f3f24c9700
+    sha256: eb3ce68e12569bb60f3d5df6dd0d5dc559b101f1eadf794ed6ca8eea400adf57
+  forum-url:
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-1-70/3e704dbd-932c-466a-98f8-191e944411d2
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-1-70/f0607cc3-80dc-4019-87ad-02207b546417
+- version: 6.1.71
+  url:
+  - https://dl.ui.com/unifi/6.1.71-de70ef60fe/UniFi.unix.zip
+  - https://dl.ui.com/unifi/6.1.71/UniFi.unix.zip
+  checksum:
+    md5: 6ad8e4da92f260852b417518d0d5bec9
+    sha256: fad9edbd0392f722c379a8c10448803aceb23aa730d84d77dc95618ba67f7e7f
+  forum-url:
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-1-71/6755cdd6-17c9-4f46-875c-56fc7ed76d0d
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-1-71/0cffd3ed-7429-4529-9a20-9fead78ebf66
+- version: 6.2.12
+  url: https://dl.ui.com/unifi/6.2.12-585ff7fdff/UniFi.unix.zip
+  checksum:
+    md5: c8858257e9b229dc067d6a95a1f68adc
+    sha256: 71827d9c457c91784180a4c5ce0d89e1bade6612f93420ef21d7fceb987e1e84
+  forum-url:
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-2-12/41529bd2-d156-4731-b201-68c069d7bd00
+- version: 6.2.13
+  url: https://dl.ui.com/unifi/6.2.13-0c59325d51/UniFi.unix.zip
+  checksum:
+    md5: bd62f2c2e336a302448c4017572a5c9f
+    sha256: 780cc420e804525d89f3248ccfca19c3a83a2ffa5f800b8a3562352c4975f9bf
+  forum-url:
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-2-13/f8dc5ebe-8790-4ae6-a7f7-6d1cc53e510f
+- version: 6.2.16
+  url: https://dl.ui.com/unifi/6.2.16-5e841c18e7/UniFi.unix.zip
+  checksum:
+    md5: 4326abeb6b9499889ec1c59f6a7a710a
+    sha256: 5abef87cbe360a647c8bb34613d2a0af17222a7805ca0569d2c917e49b21382c
+  forum-url:
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-2-16/a2e35492-e9d8-49c9-800b-d0e9b2031631
+- version: 6.2.17
+  url: https://dl.ui.com/unifi/6.2.17-ceb3ba714d/UniFi.unix.zip
+  checksum:
+    md5: 3e945a2244ea6ad6a25faa35f1e9513b
+    sha256: f373f5c47cbca2f32094630a00fc5246483ba2d901c321f85bb7652f5b2382a8
+  forum-url:
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-2-17/7f6d58bc-ce9f-43f2-8bc8-0c0dd935ebce
+- version: 6.2.19
+  url: https://dl.ui.com/unifi/6.2.19-b4730eadd0/UniFi.unix.zip
+  checksum:
+    md5: 7e23cb1cc019c5c57563f1eee9ccde31
+    sha256: 7b76d7b8de496bd788e21064baf33c085f0d33cd7cb58c32947fd96ca4532415
+  forum-url:
+  - url: https://community.ui.com/releases/UniFi-Network-Controller-6-2-19/23346096-9421-491a-9869-f8d94bde962a
