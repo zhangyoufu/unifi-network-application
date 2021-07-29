@@ -125,3 +125,8 @@
     sha256: 7b76d7b8de496bd788e21064baf33c085f0d33cd7cb58c32947fd96ca4532415
   forum-url:
   - url: https://community.ui.com/releases/UniFi-Network-Controller-6-2-19/23346096-9421-491a-9869-f8d94bde962a
+- version: 6.2.26
+  url: https://dl.ui.com/unifi/6.2.26-a79cb15f05/UniFi.unix.zip
+  checksum:
+    md5: f9e14b56f22e5d5e56b2a82f1fcc6240
+    sha256: 6e640f36440ba9cfe93fc06ce3fc869799d0d5be01348b19019f02c8263c2e2b
