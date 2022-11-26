@@ -7,7 +7,7 @@ ENV JAVA_TOOL_OPTIONS -XX:-UsePerfData
 
 ## install packages
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -o Dpkg::Use-Pty=0 openjdk-8-jre-headless tini
+RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -o Dpkg::Use-Pty=0 openjdk-11-jre-headless tini
 
 ## cleanup
 RUN rm /var/cache/debconf/*-old
