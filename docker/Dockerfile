@@ -1,5 +1,5 @@
 ## base image
-FROM ubuntu:latest@sha256:4b1d0c4a2d2aaf63b37111f34eb9fa89fa1bf53dd6e4ca954d47caebca4005c2
+FROM debian:11@sha256:534da5794e770279c889daa891f46f5a530b0c5de8bfbc5e40394a0164d9fa87
 
 ## common java options
 ENV JAVA_TOOL_OPTIONS -XX:-UsePerfData
