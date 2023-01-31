@@ -26,7 +26,7 @@ jobs:
         DOCKERD_CONFIG=$(jq '.+{experimental:true}' /etc/docker/daemon.json)
         sudo tee /etc/docker/daemon.json <<<"$DOCKERD_CONFIG" >/dev/null
         sudo systemctl restart docker
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - env:
         VERSION: ${{ github.event.inputs.version }}
         URL: ${{ github.event.inputs.url }}
