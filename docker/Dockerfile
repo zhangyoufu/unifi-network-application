@@ -1,5 +1,8 @@
-## base image
-FROM debian:11@sha256:534da5794e770279c889daa891f46f5a530b0c5de8bfbc5e40394a0164d9fa87
+# syntax=docker/dockerfile:1
+
+## base image and arg
+FROM --platform=$TARGETPLATFORM debian:11@sha256:534da5794e770279c889daa891f46f5a530b0c5de8bfbc5e40394a0164d9fa87
+ARG TARGETARCH
 
 ## common java options
 ENV JAVA_TOOL_OPTIONS -XX:-UsePerfData
@@ -19,14 +22,15 @@ RUN rm /var/log/apt/term.log
 
 ## add UniFi Network Controller
 COPY UniFi /opt/unifi
+WORKDIR /opt/unifi
+
+## remove unused native libraries
+RUN ["/bin/bash", "-O", "extglob", "-c", "case $TARGETARCH in amd64) ARCH=x86_64;; arm) ARCH=armv7;; arm64) ARCH=aarch64;; *) echo Unsupported architecture: $TARGETARCH; exit 1;; esac; cd lib/native/Linux; rm -r !(${ARCH})"]
 
 ## entrypoint
 COPY entrypoint.sh /
 RUN mkdir /entrypoint.d
 ENTRYPOINT ["/entrypoint.sh"]
-
-## runtime
-WORKDIR /opt/unifi
 
 ## expose ports (https://help.ui.com/hc/en-us/articles/218506997)
 # unifi.http.port

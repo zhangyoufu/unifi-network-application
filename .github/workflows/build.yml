@@ -13,26 +13,59 @@ on:
       sha256:
         description: SHA256 checksum for UniFi.unix.zip
         default: ''
+defaults:
+  run:
+    shell: bash
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
-    - name: Enable dockerd --experimental
-      run: |-
-        if [ ! -e /etc/docker/daemon.json ]; then
-        	echo '{}' | tee /etc/docker/daemon.json >/dev/null
-        fi
-        DOCKERD_CONFIG=$(jq '.+{experimental:true}' /etc/docker/daemon.json)
-        sudo tee /etc/docker/daemon.json <<<"$DOCKERD_CONFIG" >/dev/null
-        sudo systemctl restart docker
     - uses: actions/checkout@v3
-    - env:
-        VERSION: ${{ github.event.inputs.version }}
+    - name: Download UniFi.unix.zip
+      env:
         URL: ${{ github.event.inputs.url }}
+      run: wget --quiet --show-progress --progress=dot:giga --output-document UniFi.unix.zip "$URL"
+    - name: Verify MD5 checksum
+      if: github.event.inputs.md5 != ''
+      env:
         MD5: ${{ github.event.inputs.md5 }}
+      run: echo "$MD5  UniFi.unix.zip" | md5sum --status --check
+    - name: Verify SHA256 checksum
+      if: github.event.inputs.sha256 != ''
+      env:
         SHA256: ${{ github.event.inputs.sha256 }}
-        IMAGE_PATH: registry-1.docker.io/youfu/unifi
-        REGISTRY_USERNAME: youfu
+      run: echo "$SHA256  UniFi.unix.zip" | sha256sum --status --check
+    - name: Extract UniFi.unix.zip
+      working-directory: docker
+      run: unzip -q ../UniFi.unix.zip
+    - name: Pre-build adjustment
+      working-directory: docker/UniFi
+      run: |-
+        rm bin/mongod
+        rm -rf lib/native/Mac
+        rm -rf lib/native/Windows
+        rm lib/native/Linux/*/libubnt_sdnotify_jni.so
+        rm readme.txt
+        rmdir bin
+        mkdir data
+        mkdir logs
+        mkdir -p run/work/ROOT
+    - name: Register qemu-user against binfmt_misc
+      uses: docker/setup-qemu-action@v2
+      with:
+        platforms: arm,arm64
+    - name: Register BuildKit node
+      run: docker buildx create --driver docker-container --use
+    - name: Build and push docker image
+      env:
+        IMAGE_PATH: ${{ vars.IMAGE_PATH }}
+        VERSION: ${{ github.event.inputs.version }}
+        REGISTRY_USERNAME: ${{ vars.REGISTRY_USERNAME }}
         REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
-      run: ./build.sh 2>&1
+      run: |-
+        if [ "${GITHUB_REF}" = "refs/heads/master" ]; then
+          docker login --username "${REGISTRY_USERNAME}" --password "${REGISTRY_PASSWORD}" "${IMAGE_PATH%%/*}"
+          PUSH_ARGS=(--push)
+        fi
+        docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 --tag "$IMAGE_PATH:$VERSION" "${PUSH_ARGS[@]}" docker
