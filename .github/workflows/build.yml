@@ -51,6 +51,7 @@ jobs:
         mkdir data
         mkdir logs
         mkdir -p run/work/ROOT
+        mkdir -p work/Tomcat/localhost/ROOT
     - name: Register qemu-user against binfmt_misc
       uses: docker/setup-qemu-action@v2
       with:
