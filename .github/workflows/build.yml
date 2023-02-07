@@ -69,6 +69,8 @@ jobs:
       run: |-
         if [ "${GITHUB_REF}" = "refs/heads/master" ]; then
           docker login --username "${REGISTRY_USERNAME}" --password "${REGISTRY_PASSWORD}" "${IMAGE_PATH%%/*}"
-          PUSH_ARGS=(--push)
+          PUSH=true
+        else
+          PUSH=false
         fi
-        docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 --tag "$IMAGE_PATH:$VERSION" "${PUSH_ARGS[@]}" --provenance=false docker
+        docker buildx build --provenance=false --platform linux/amd64,linux/arm64,linux/arm/v7 --output=type=image,oci-mediatypes=true,name=${IMAGE_PATH}:${VERSION},push=${PUSH} docker
