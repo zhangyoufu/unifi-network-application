@@ -2,7 +2,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: major.minor.patch, without suffix
+        description: version, <major>.<minor>.<patch>
         required: true
       url:
         description: URL for UniFi.unix.zip
