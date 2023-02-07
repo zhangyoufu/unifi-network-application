@@ -69,4 +69,4 @@ jobs:
           docker login --username "${REGISTRY_USERNAME}" --password "${REGISTRY_PASSWORD}" "${IMAGE_PATH%%/*}"
           PUSH_ARGS=(--push)
         fi
-        docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 --tag "$IMAGE_PATH:$VERSION" "${PUSH_ARGS[@]}" docker
+        docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 --tag "$IMAGE_PATH:$VERSION" "${PUSH_ARGS[@]}" --provenance=false docker
