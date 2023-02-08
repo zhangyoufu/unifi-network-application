@@ -1,27 +1,42 @@
 # syntax=docker/dockerfile:1
 
+################################################################################
+
 FROM --platform=${BUILDPLATFORM} alpine:latest AS prepare
 ARG URL
 ARG MD5
 ARG SHA256
+
+## install dependencies
 RUN apk --no-cache add coreutils unzip wget
+
+## download and verify checksum
 RUN wget --quiet --show-progress --progress=dot:giga --output-document UniFi.unix.zip "${URL}"
 RUN [ -n "${MD5}" ] && echo "${MD5}  UniFi.unix.zip" | md5sum --status --check
 RUN [ -n "${SHA256}" ] && echo "${SHA256}  UniFi.unix.zip" | sha256sum --status --check
+
+## unzip
 RUN unzip -q UniFi.unix.zip
 WORKDIR UniFi
+
+## remove unwanted files
 RUN rm readme.txt
 RUN rm bin/mongod
 RUN rmdir bin
+
+## remove unused native libraries
 RUN rm -rf lib/native/Windows
 RUN rm -rf lib/native/Mac
 RUN rm lib/native/Linux/*/libubnt_sdnotify_jni.so
+
+## create directory structure that would be used at runtime
 RUN mkdir data
 RUN mkdir logs
 RUN mkdir -p run/work/ROOT
 RUN mkdir -p work/Tomcat/localhost/ROOT
 
-## base image and arg
+################################################################################
+
 FROM --platform=${TARGETPLATFORM} debian:11@sha256:534da5794e770279c889daa891f46f5a530b0c5de8bfbc5e40394a0164d9fa87
 ARG TARGETARCH
 
@@ -29,7 +44,7 @@ ARG TARGETARCH
 ENV JAVA_TOOL_OPTIONS -XX:-UsePerfData
 #-Djdk.disableLastUsageTracking
 
-## install packages
+## install dependencies
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -o Dpkg::Use-Pty=0 openjdk-11-jre-headless tini
 
