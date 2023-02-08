@@ -23,7 +23,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-    - uses: actions/checkout@v3
+    - name: Dump inputs
+      run: jq .inputs "${GITHUB_EVENT_PATH}"
+    - name: Clone repository
+      uses: actions/checkout@v3
     - name: Download UniFi.unix.zip
       env:
         URL: ${{ github.event.inputs.url }}
