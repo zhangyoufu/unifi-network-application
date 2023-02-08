@@ -4,7 +4,11 @@ updates:
   directory: /docker
   schedule:
     interval: daily
+  commit-message:
+    prefix: "[docker] "
 - package-ecosystem: github-actions
   directory: /
   schedule:
     interval: daily
+  commit-message:
+    prefix: "[gh-actions] "
