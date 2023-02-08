@@ -12,8 +12,8 @@ RUN apk --no-cache add coreutils unzip wget
 
 ## download and verify checksum
 RUN wget --quiet --show-progress --progress=dot:giga --output-document UniFi.unix.zip "${URL}"
-RUN [ -n "${MD5}" ] && echo "${MD5}  UniFi.unix.zip" | md5sum --status --check
-RUN [ -n "${SHA256}" ] && echo "${SHA256}  UniFi.unix.zip" | sha256sum --status --check
+RUN if [ -n "${MD5}" ]; then echo "${MD5}  UniFi.unix.zip" | md5sum --status --check; fi
+RUN if [ -n "${SHA256}" ]; then echo "${SHA256}  UniFi.unix.zip" | sha256sum --status --check; fi
 
 ## unzip
 RUN unzip -q UniFi.unix.zip
