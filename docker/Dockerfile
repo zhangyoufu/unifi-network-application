@@ -1,7 +1,28 @@
 # syntax=docker/dockerfile:1
 
+FROM --platform=${BUILDPLATFORM} alpine:latest AS prepare
+ARG URL
+ARG MD5
+ARG SHA256
+RUN apk --no-cache add coreutils unzip wget
+RUN wget --quiet --show-progress --progress=dot:giga --output-document UniFi.unix.zip "${URL}"
+RUN [ -n "${MD5}" ] && echo "${MD5}  UniFi.unix.zip" | md5sum --status --check
+RUN [ -n "${SHA256}" ] && echo "${SHA256}  UniFi.unix.zip" | sha256sum --status --check
+RUN unzip -q UniFi.unix.zip
+WORKDIR UniFi
+RUN rm readme.txt
+RUN rm bin/mongod
+RUN rmdir bin
+RUN rm -rf lib/native/Windows
+RUN rm -rf lib/native/Mac
+RUN rm lib/native/Linux/*/libubnt_sdnotify_jni.so
+RUN mkdir data
+RUN mkdir logs
+RUN mkdir -p run/work/ROOT
+RUN mkdir -p work/Tomcat/localhost/ROOT
+
 ## base image and arg
-FROM --platform=$TARGETPLATFORM debian:11@sha256:534da5794e770279c889daa891f46f5a530b0c5de8bfbc5e40394a0164d9fa87
+FROM --platform=${TARGETPLATFORM} debian:11@sha256:534da5794e770279c889daa891f46f5a530b0c5de8bfbc5e40394a0164d9fa87
 ARG TARGETARCH
 
 ## common java options
@@ -21,11 +42,11 @@ RUN rm /var/log/apt/term.log
 #RUN rmdir /tmp/hsperfdata_root
 
 ## add UniFi Network Controller
-COPY UniFi /opt/unifi
+COPY --from=prepare UniFi /opt/unifi
 WORKDIR /opt/unifi
 
 ## remove unused native libraries
-RUN ["/bin/bash", "-O", "extglob", "-c", "case $TARGETARCH in amd64) ARCH=x86_64;; arm) ARCH=armv7;; arm64) ARCH=aarch64;; *) echo Unsupported architecture: $TARGETARCH; exit 1;; esac; cd lib/native/Linux; rm -r !(${ARCH})"]
+RUN ["/bin/bash", "-O", "extglob", "-c", "case ${TARGETARCH} in amd64) ARCH=x86_64;; arm) ARCH=armv7;; arm64) ARCH=aarch64;; *) echo Unsupported architecture: ${TARGETARCH}; exit 1;; esac; cd lib/native/Linux; rm -r !(${ARCH})"]
 
 ## entrypoint
 COPY entrypoint.sh /
