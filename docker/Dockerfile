@@ -37,7 +37,7 @@ RUN mkdir -p work/Tomcat/localhost/ROOT
 
 ################################################################################
 
-FROM --platform=${TARGETPLATFORM} debian:11@sha256:92277f7108c432febe41beffd367dbb6dac60b9fbfe517c77208e6457eafe22b
+FROM --platform=${TARGETPLATFORM} debian:11@sha256:43ef0c6c3585d5b406caa7a0f232ff5a19c1402aeb415f68bcd1cf9d10180af8
 ARG TARGETARCH
 
 ## common java options
