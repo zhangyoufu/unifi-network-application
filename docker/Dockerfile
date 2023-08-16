@@ -37,7 +37,7 @@ RUN mkdir -p work/Tomcat/localhost/ROOT
 
 ################################################################################
 
-FROM --platform=${TARGETPLATFORM} debian:11@sha256:92277f7108c432febe41beffd367dbb6dac60b9fbfe517c77208e6457eafe22b
+FROM --platform=${TARGETPLATFORM} debian:12@sha256:b91baba9c2cae5edbe3b0ff50ae8f05157e3ae6f018372dcfc3aba224acb392b
 ARG TARGETARCH
 
 ## common java options
@@ -46,7 +46,7 @@ ENV JAVA_TOOL_OPTIONS -XX:-UsePerfData
 
 ## install dependencies
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -o Dpkg::Use-Pty=0 openjdk-11-jre-headless tini
+RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y -o Dpkg::Use-Pty=0 openjdk-17-jre-headless tini
 
 ## cleanup
 RUN rm /var/cache/debconf/*-old
