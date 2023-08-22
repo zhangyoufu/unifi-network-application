@@ -14,7 +14,7 @@ exec /usr/bin/tini -- java \
 -Dfile.encoding=UTF-8 \
 -Djava.awt.headless=true \
 -Dapple.awt.UIElement=true \
-$UNIFI_JVM_OPTS \
+${UNIFI_JVM_OPTS:-} \
 -XX:+ExitOnOutOfMemoryError \
 -XX:+CrashOnOutOfMemoryError \
 -XX:ErrorFile=logs/hs_err_pid%p.log \
