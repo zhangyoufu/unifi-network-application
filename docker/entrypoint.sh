@@ -10,4 +10,17 @@ find -L /entrypoint.d -maxdepth 1 -type f -executable -print0 | sort -z | while 
 	echo "Executing $HOOK"
 	"$HOOK"
 done
-exec /usr/bin/tini -- java -jar lib/ace.jar start
+exec /usr/bin/tini -- java \
+-Dfile.encoding=UTF-8 \
+-Djava.awt.headless=true \
+-Dapple.awt.UIElement=true \
+$UNIFI_JVM_OPTS \
+-XX:+ExitOnOutOfMemoryError \
+-XX:+CrashOnOutOfMemoryError \
+-XX:ErrorFile=logs/hs_err_pid%p.log \
+--add-opens java.base/java.lang=ALL-UNNAMED \
+--add-opens java.base/java.time=ALL-UNNAMED \
+--add-opens java.base/sun.security.util=ALL-UNNAMED \
+--add-opens java.base/java.io=ALL-UNNAMED \
+--add-opens java.rmi/sun.rmi.transport=ALL-UNNAMED \
+-jar lib/ace.jar start
