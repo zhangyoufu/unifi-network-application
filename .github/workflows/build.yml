@@ -28,7 +28,7 @@ jobs:
     - name: Clone repository
       uses: actions/checkout@v4
     - name: Register qemu-user against binfmt_misc
-      uses: docker/setup-qemu-action@v2
+      uses: docker/setup-qemu-action@v3
       with:
         platforms: arm,arm64
     - name: Register BuildKit node
